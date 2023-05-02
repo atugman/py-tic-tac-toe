@@ -77,12 +77,13 @@ while not winner:
 
     for r in all_rows:
         print('r index',r)
+        print('rows:',all_rows)
         if r[0] == r[1] and r[0] == r[2]:
             #if '.' not in r[0]:
             if r[0] == 'O' or r[0] == 'X':
-                f = open("logs.txt", "a")
+                f = open("main.log", "a")
                 f.write("\n")
-                f.write('we have a winner?')
+                f.write('we have a horitzontal winner?')
                 f.write("\n")
                 f.close()
                 winner = True
@@ -90,13 +91,17 @@ while not winner:
 
     if winner:
         break
-    ''''    for c in all_cols:
+    
+    for c in all_cols:
+        print('c:',c)
+        print('all_colls:',all_cols)
+        print('c0:',c[0])
         if c[0] == c[1] and c[0] == c[2]:
             #if '.' not in c[0]:
-            if r[0] == 'O' or r[0] == 'X':
-                f = open("logs.txt", "a")
+            if c[0] == 'O' or c[0] == 'X':
+                f = open("main.log", "a")
                 f.write("\n")
-                f.write('we have a winner?')
+                f.write('we have a vertical winner?')
                 f.write("\n")
                 f.close()
                 winner = True
@@ -104,14 +109,27 @@ while not winner:
     
     if winner:
         break
-    '''
-    '''
-    for r in range(len(grid)):
-        current_row = grid[r]
-        for c in range(len(grid)):
-            current_col = current_row[c]
-            if 
-    '''
+
+    # check for diagonal winners
+
+    if grid[0][0] == grid[1][1] and grid[0][0] == grid[2][2] and (grid[0][0] == 'O' or grid[0][0] == 'X'):
+        f = open("main.log", "a")
+        f.write("\n")
+        f.write('we have a diagonal l to r winner?')
+        f.write("\n")
+        f.close()
+        winner = True
+
+    if grid[0][2] == grid[1][1] and grid[0][2] == grid[2][0] and (grid[0][2] == 'O' or grid[0][2] == 'X'):
+        f = open("main.log", "a")
+        f.write("\n")
+        f.write('we have a diagonal r to l winner?')
+        f.write("\n")
+        f.close()
+        winner = True
+
+    if winner:
+        break
 
 
     # user
@@ -144,7 +162,7 @@ while not winner:
         if grid[my_set[0]][my_set[1]] == ' ':
             grid[my_set[0]][my_set[1]] = 'O'
 
-    f = open("logs.txt", "a")
+    f = open("main.log", "a")
     f.write(str(turn_counter))
     f.write("\n")
     f.write(str(grid[0]))
